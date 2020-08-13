@@ -19,6 +19,7 @@ function LandingPage() {
 				setMainMovieImage(res.results[0])
 				setCurrentPage(res.page)
 			})
+			.catch((error) => console.error("Error:", error))
 	}
 
 	const loadMoreMovies = () => {
@@ -55,6 +56,7 @@ function LandingPage() {
 						Movies.map((movie) => (
 							<React.Fragment key={movie.id}>
 								<GridCards
+									landingPage={true}
 									image={
 										movie.poster_path
 											? `${IMAGE_BASE_URL}w500${movie.poster_path}`
