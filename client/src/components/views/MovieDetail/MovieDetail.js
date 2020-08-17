@@ -6,6 +6,7 @@ import { API_KEY } from "../../key"
 import GridCards from "../commons/GridCards"
 import MainImage from "../../views/LandingPage/sections/MainImage"
 import MovieInfo from "./sections/MovieInfo"
+import Favorite from "./sections/Favorite"
 
 function MovieDetailPage(props) {
 	const movieId = props.match.params.movieId
@@ -47,6 +48,14 @@ function MovieDetailPage(props) {
 			/>
 
 			<div style={{ width: "85%", margin: "1rem auto" }}>
+				<div style={{ display: "flex", justifyContent: "flex-end" }}>
+					<Favorite
+						movieInfo={Movie}
+						movieId={movieId}
+						userFrom={localStorage.getItem("userId")}
+					/>
+				</div>
+
 				<MovieInfo movie={Movie} />
 
 				<br />
