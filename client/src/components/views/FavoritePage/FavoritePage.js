@@ -7,7 +7,7 @@ import { IMAGE_BASE_URL } from "../../Config"
 function FavoritePage() {
 	const [Favorites, setFavorites] = useState([])
 
-	const fetchFavoredMovie = () => {
+	const fetchFavoriteMovie = () => {
 		Axios.post("/api/favorite/getFavoriteMovie", {
 			userFrom: localStorage.getItem("userId"),
 		}).then((response) => {
@@ -28,7 +28,7 @@ function FavoritePage() {
 		Axios.post("/api/favorite/removeFromFavoriteMovie", variables).then(
 			(response) => {
 				if (response.data.success) {
-					fetchFavoredMovie()
+					fetchFavoriteMovie()
 				} else {
 					alert("Failed to remove from favorite movie")
 				}
@@ -37,7 +37,7 @@ function FavoritePage() {
 	}
 
 	useEffect(() => {
-		fetchFavoredMovie()
+		fetchFavoriteMovie()
 	}, [])
 
 	const renderCards = Favorites.map((favorite, index) => {

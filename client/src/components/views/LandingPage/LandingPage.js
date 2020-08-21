@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { API_KEY } from "../../key"
 import { API_URL, IMAGE_BASE_URL } from "../../Config"
-import MainImage from "./sections/MainImage"
+import MainImage from "../commons/MainImage"
 import GridCards from "../commons/GridCards"
 import { Row } from "antd"
 

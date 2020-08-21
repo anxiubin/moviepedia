@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-export default function MainImage(props) {
+function MainImage(props) {
 	return (
 		<Container image={props.image}>
 			<DescWrapper>
@@ -38,3 +38,4 @@ const DescWrapper = styled.div`
 		font-size: 1rem;
 	}
 `
+export default MainImage
