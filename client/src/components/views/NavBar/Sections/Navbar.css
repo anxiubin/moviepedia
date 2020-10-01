@@ -19,6 +19,10 @@
 	padding: 7px 20px;
 }
 
+.menu__logo a img {
+	width: 30%;
+}
+
 .menu__container .ant-menu-item {
 	padding: 0px 5px;
 }

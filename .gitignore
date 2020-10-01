@@ -1,5 +1,8 @@
 # Dependency directories
 /node_modules
 
+# misc
+.DS_Store
+
 # environment variables file
 dev.js
