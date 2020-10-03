@@ -4,20 +4,27 @@ import { Row, Button } from "antd"
 import { API_URL, IMAGE_BASE_URL, IMAGE_SIZE } from "../../Config"
 import { API_KEY } from "../../key"
 import GridCards from "../commons/GridCards"
-import MainImage from "../../views/LandingPage/sections/MainImage"
+import MainImage from "../commons/MainImage"
 import MovieInfo from "./sections/MovieInfo"
 import Favorite from "./sections/Favorite"
+import { VideoContainer } from "./styles"
 
 function MovieDetailPage(props) {
 	const movieId = props.match.params.movieId
 	const [Movie, setMovie] = useState({})
 	const [Casts, setCasts] = useState([])
 	const [ActorToggle, setActorToggle] = useState(false)
+	const [video, setVideo] = useState(null)
 
-	useEffect(() => {
-		let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
-		fetchDetailInfo(endpointForMovieInfo)
-	}, [])
+	const getVideo = () => {
+		let endpoint = `${API_URL}movie/${movieId}/videos?api_key=${API_KEY}`
+		fetch(endpoint)
+			.then((res) => res.json())
+			.then((res) => {
+				setVideo(`https://www.youtube.com/embed/${res.results[0].key}`)
+			})
+			.catch((error) => console.error("Error:", error))
+	}
 
 	const toggleActorView = () => {
 		setActorToggle(!ActorToggle)
@@ -39,6 +46,12 @@ function MovieDetailPage(props) {
 			.catch((error) => console.error("Error:", error))
 	}
 
+	useEffect(() => {
+		let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`
+		fetchDetailInfo(endpointForMovieInfo)
+		getVideo()
+	}, [])
+
 	return (
 		<div>
 			<MainImage
@@ -48,6 +61,17 @@ function MovieDetailPage(props) {
 			/>
 
 			<div style={{ width: "85%", margin: "1rem auto" }}>
+				<VideoContainer>
+					<iframe
+						width="100%"
+						src={video}
+						title="video player"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					></iframe>
+				</VideoContainer>
+
 				<div style={{ display: "flex", justifyContent: "flex-end" }}>
 					<Favorite
 						movieInfo={Movie}
