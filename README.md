@@ -2,6 +2,18 @@
 
 ✨ Get Started
 
+1. server/config 폴더 내에 dev.js 파일을 만듭니다.
+2. dev.js 파일 내에 Mongo DB 정보를 넣습니다.
+
+```
+module.exports = {
+	mongoURI: "Mongo DB 정보",
+}
+```
+
+3. 서버와 클라이언트 각각 dependencies를 다운받습니다.
+4. 서버와 클라이언트를 동시에 실행합니다.
+
 ```
 npm run dev
 ```
@@ -9,6 +21,7 @@ npm run dev
 📚 Stack
 
 - React
+- Redux
 - JavaScript
 - Node.js
 - Express.js
